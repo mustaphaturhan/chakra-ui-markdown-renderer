@@ -1,16 +1,30 @@
 {
   "name": "chakra-ui-markdown-renderer",
+  "main": "dist/index.js",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "license": "MIT",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mustaphaturhan/chakra-ui-markdown-renderer"
+  },
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "@chakra-ui/core": "^0.5.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "cross-env": "^7.0.0",
     "react-scripts": "3.3.0"
   },
   "scripts": {
+    "clean": "rimraf dist",
+    "compile": "npm run clean && cross-env NODE_ENV=production babel src/ --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,stories.js,__snapshots__",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -30,5 +44,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "peerDependencies": {
+    "@emotion/core": "^10.0.27",
+    "@emotion/styled": "^10.0.27",
+    "emotion-theming": "^10.0.27",
+    "react": ">= 16.8",
+    "react-dom": ">= 16.8"
   }
 }
