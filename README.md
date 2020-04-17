@@ -15,9 +15,9 @@ For example, when you want to render level 2 heading component, it is rendering:
 ### Install
 
 ```sh
-$ yarn add @chakra-ui/core
+$ yarn add @chakra-ui/core chakra-ui-markdown-renderer
 # or
-$ npm install --save @chakra-ui/core
+$ npm install --save @chakra-ui/core chakra-ui-markdown-renderer
 ```
 
 ### Usage
@@ -30,4 +30,24 @@ import ChakraUIRenderer from "chakra-ui-markdown-renderer";
   source={markdown}
   escapeHtml={false}
 />;
+```
+
+### Extending Defaults
+
+```jsx
+import ChakraUIRenderer, { defaults } from 'chakra-ui-markdown-renderer';
+
+const newTheme = {
+  paragraph: props => {
+    const { children } = props;
+    return <Text mb={2} fontSize={'12px'}>{children}</Text>;
+  },
+  ...defaults
+}
+
+<ReactMarkdown
+  renderers={ChakraUIRenderer(newTheme)}
+  source={decode(recipeDescription)}
+  escapeHtml={false}
+/>
 ```
