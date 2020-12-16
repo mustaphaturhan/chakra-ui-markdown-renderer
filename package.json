@@ -1,7 +1,9 @@
 {
   "name": "chakra-ui-markdown-renderer",
-  "main": "dist/index.js",
-  "version": "0.2.0",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "source": "src/index.js",
+  "version": "1.0.0",
   "private": false,
   "license": "MIT",
   "files": [
@@ -12,23 +14,31 @@
     "type": "git",
     "url": "https://github.com/mustaphaturhan/chakra-ui-markdown-renderer"
   },
-  "dependencies": {
-    "@chakra-ui/core": "^0.5.2"
+  "peerDependencies": {
+    "@chakra-ui/react": "^1.0.3",
+    "@emotion/core": "^10.0.27",
+    "@emotion/react": "^11.1.2",
+    "@emotion/styled": "^11.0.0",
+    "emotion-theming": "^10.0.27",
+    "framer-motion": "^2.9.5",
+    "react": ">= 16.8",
+    "react-dom": ">= 16.8"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-react": "^7.8.3",
+    "@rollup/plugin-babel": "^5.2.2",
     "cross-env": "^7.0.0",
-    "react-scripts": "3.3.0"
+    "rollup": "^2.35.1",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-terser": "^7.0.2"
   },
   "scripts": {
-    "clean": "rimraf dist",
-    "compile": "npm run clean && cross-env NODE_ENV=production babel src/ --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,stories.js,__snapshots__",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "rollup -c",
+    "build-watch": "rollup -c -w"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -44,12 +54,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "peerDependencies": {
-    "@emotion/core": "^10.0.27",
-    "@emotion/styled": "^10.0.27",
-    "emotion-theming": "^10.0.27",
-    "react": ">= 16.8",
-    "react-dom": ">= 16.8"
   }
 }

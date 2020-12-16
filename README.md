@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/npm/v/chakra-ui-markdown-renderer?color=green&style=flat-square" />
 </a>
 
-This package is created for people who using [Chakra-UI's](https://chakra-ui.com/)'s [CSSReset](https://chakra-ui.com/getting-started#injecting-global-styles) component and [react-markdown](https://github.com/rexxars/react-markdown) together.
+This package is created for people who using [Chakra-UI's](https://chakra-ui.com/) and [react-markdown](https://github.com/rexxars/react-markdown) together.
 
 ### The Problem
 
@@ -14,16 +14,20 @@ For example, when you want to render level 2 heading component, it is rendering:
 
 ### Install
 
+Make @chakra-ui/react installation how they tell you on their [Getting Started - Chakra UI](https://chakra-ui.com/docs/getting-started) page.
+
 ```sh
-$ yarn add @chakra-ui/core chakra-ui-markdown-renderer
+$ yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion chakra-ui-markdown-renderer
+
 # or
-$ npm install --save @chakra-ui/core chakra-ui-markdown-renderer
+
+$ npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion chakra-ui-markdown-renderer
 ```
 
 ### Usage
 
 ```jsx
-import ChakraUIRenderer from "chakra-ui-markdown-renderer";
+import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 
 <ReactMarkdown
   renderers={ChakraUIRenderer()}

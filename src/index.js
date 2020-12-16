@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Text,
   Code,
@@ -8,11 +8,13 @@ import {
   Checkbox,
   ListItem,
   Heading,
-  Image
-} from "@chakra-ui/core";
+  Image,
+} from '@chakra-ui/react';
 
 function getCoreProps(props) {
-  return props['data-sourcepos'] ? { 'data-sourcepos': props['data-sourcepos'] } : {};
+  return props['data-sourcepos']
+    ? { 'data-sourcepos': props['data-sourcepos'] }
+    : {};
 }
 
 export const defaults = {
@@ -62,7 +64,13 @@ export const defaults = {
     if (ordered) styleType = 'decimal';
     if (depth === 1) styleType = 'circle';
     return (
-      <List spacing={24} as={ordered ? 'ol' : 'ul'} styleType={styleType} pl={4} {...attrs}>
+      <List
+        spacing={24}
+        as={ordered ? 'ol' : 'ul'}
+        styleType={styleType}
+        pl={4}
+        {...attrs}
+      >
         {children}
       </List>
     );
@@ -78,7 +86,10 @@ export const defaults = {
       );
     }
     return (
-      <ListItem {...getCoreProps(props)} listStyleType={checked !== null ? 'none' : 'inherit'}>
+      <ListItem
+        {...getCoreProps(props)}
+        listStyleType={checked !== null ? 'none' : 'inherit'}
+      >
         {checkbox || children}
       </ListItem>
     );
@@ -88,7 +99,12 @@ export const defaults = {
     const { level, children } = props;
     const sizes = ['2xl', 'xl', 'lg', 'md', 'sm', 'xs'];
     return (
-      <Heading my={4} as={`h${level}`} size={sizes[`${level - 1}`]} {...getCoreProps(props)}>
+      <Heading
+        my={4}
+        as={`h${level}`}
+        size={sizes[`${level - 1}`]}
+        {...getCoreProps(props)}
+      >
         {children}
       </Heading>
     );
@@ -96,7 +112,7 @@ export const defaults = {
   inlineCode: props => {
     const { children } = props;
     return <Code {...getCoreProps(props)}>{children}</Code>;
-  }
+  },
 };
 
 function ChakraUIRenderer(theme = defaults) {
@@ -116,7 +132,7 @@ function ChakraUIRenderer(theme = defaults) {
     listItem: theme.listItem,
     definition: theme.definition,
     heading: theme.heading,
-    inlineCode: theme.inlineCode
+    inlineCode: theme.inlineCode,
   };
 }
 
