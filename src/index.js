@@ -4,11 +4,12 @@ import {
   Code,
   Divider,
   Link,
-  List,
   Checkbox,
   ListItem,
   Heading,
   Image,
+  OrderedList,
+  UnorderedList,
 } from '@chakra-ui/react';
 
 function getCoreProps(props) {
@@ -60,19 +61,23 @@ export const defaults = {
     if (start !== null && start !== 1 && start !== undefined) {
       attrs.start = start.toString();
     }
+    let Element = UnorderedList;
     let styleType = 'disc';
-    if (ordered) styleType = 'decimal';
+    if (ordered) {
+      Element = OrderedList;
+      styleType = 'decimal';
+    }
     if (depth === 1) styleType = 'circle';
     return (
-      <List
-        spacing={24}
+      <Element
+        spacing={2}
         as={ordered ? 'ol' : 'ul'}
         styleType={styleType}
         pl={4}
         {...attrs}
       >
         {children}
-      </List>
+      </Element>
     );
   },
   listItem: props => {
