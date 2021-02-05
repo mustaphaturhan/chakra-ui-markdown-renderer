@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2021-02-05
+
+### Major Changes
+
+- Now List type are using `UnorderedList` and `OrderedList` components according to providing type.
+- Fixes `List`s `spacing` wrong property. Changes `24` to `2`.
+
+If you want to use old List's, just extend defaults and change `List` key with this:
+
+```
+list: props => {
+  const { start, ordered, children, depth } = props;
+  let styleType = 'disc';
+  if (ordered) styleType = 'decimal';
+  if (depth === 1) styleType = 'circle';
+  return (
+    <List
+      spacing={24}
+      as={ordered ? 'ol' : 'ul'}
+      styleType={styleType}
+      pl={4}
+    >
+      {children}
+    </List>
+);
+```
+
 ## [1.0.0] - 2020-12-16
 
 ### Added
