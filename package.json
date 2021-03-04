@@ -30,15 +30,18 @@
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-react": "^7.8.3",
     "@rollup/plugin-babel": "^5.2.3",
+    "@types/react": "^16.9.46",
     "cross-env": "^7.0.0",
     "rollup": "^2.38.3",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-terser": "^7.0.2"
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "4.0.5"
   },
   "scripts": {
     "build": "rollup -c",
-    "build-watch": "rollup -c -w"
+    "build-watch": "rollup -c -w",
+    "build:typescript": "tsc -b"
   },
   "eslintConfig": {
     "extends": "react-app"
