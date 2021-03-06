@@ -42,11 +42,11 @@ import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import ChakraUIRenderer, { defaults } from 'chakra-ui-markdown-renderer';
 
 const newTheme = {
+  ...defaults,
   paragraph: props => {
     const { children } = props;
     return <Text mb={2} fontSize={'12px'}>{children}</Text>;
   },
-  ...defaults
 }
 
 <ReactMarkdown
