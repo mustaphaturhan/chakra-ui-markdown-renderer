@@ -99,7 +99,6 @@ export const defaults = {
       </ListItem>
     );
   },
-  definition: () => null,
   heading: props => {
     const { level, children } = props;
     const sizes = ['2xl', 'xl', 'lg', 'md', 'sm', 'xs'];
@@ -122,22 +121,25 @@ export const defaults = {
 
 function ChakraUIRenderer(theme = defaults) {
   return {
-    paragraph: theme.paragraph,
-    emphasis: theme.emphasis,
+    p: theme.paragraph,
+    em: theme.emphasis,
     blockquote: theme.blockquote,
     code: theme.code,
-    delete: theme.delete,
-    thematicBreak: theme.thematicBreak,
-    link: theme.link,
+    del: theme.delete,
+    hr: theme.thematicBreak,
+    a: theme.link,
     img: theme.img,
-    linkReference: theme.linkReference,
-    imageReference: theme.imageReference,
     text: theme.text,
-    list: theme.list,
-    listItem: theme.listItem,
-    definition: theme.definition,
-    heading: theme.heading,
-    inlineCode: theme.inlineCode,
+    ul: theme.list,
+    ol: theme.list,
+    li: theme.listItem,
+    h1: theme.heading,
+    h2: theme.heading,
+    h3: theme.heading,
+    h4: theme.heading,
+    h5: theme.heading,
+    h6: theme.heading,
+    pre: theme.inlineCode,
   };
 }
 

@@ -30,8 +30,8 @@ $ npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion chakra-ui-
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 
 <ReactMarkdown
-  renderers={ChakraUIRenderer()}
-  source={markdown}
+  components={ChakraUIRenderer()}
+  children={markdown}
   escapeHtml={false}
 />;
 ```
@@ -43,15 +43,15 @@ import ChakraUIRenderer, { defaults } from 'chakra-ui-markdown-renderer';
 
 const newTheme = {
   ...defaults,
-  paragraph: props => {
+  p: props => {
     const { children } = props;
     return <Text mb={2} fontSize={'12px'}>{children}</Text>;
   },
 }
 
 <ReactMarkdown
-  renderers={ChakraUIRenderer(newTheme)}
-  source={decode(recipeDescription)}
+  components={ChakraUIRenderer(newTheme)}
+  children={decode(recipeDescription)}
   escapeHtml={false}
 />
 ```
