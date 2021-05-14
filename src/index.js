@@ -10,6 +10,12 @@ import {
   Image,
   OrderedList,
   UnorderedList,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
 } from '@chakra-ui/react';
 
 function getCoreProps(props) {
@@ -19,35 +25,39 @@ function getCoreProps(props) {
 }
 
 export const defaults = {
-  paragraph: props => {
+  p: props => {
     const { children } = props;
     return <Text mb={2}>{children}</Text>;
   },
-  emphasis: props => {
+  em: props => {
     const { children } = props;
     return <Text as="em">{children}</Text>;
   },
   blockquote: props => {
     const { children } = props;
-    return <Code p={2}>{children}</Code>;
-  },
-  code: props => {
-    const { language, value } = props;
-    const className = language && `language-${language}`;
     return (
-      <pre {...getCoreProps(props)}>
-        <Code p={2} className={className || null}>
-          {value}
-        </Code>
-      </pre>
+      <Code as="blockquote" p={2}>
+        {children}
+      </Code>
     );
   },
-  delete: props => {
+  code: props => {
+    const { inline, children, className } = props;
+
+    if (inline) {
+      return <Code p={2} children={children} />;
+    }
+
+    return <Code className={className} whiteSpace="break-spaces" d="block" w="full" p={2} children={children} />;
+  },
+  del: props => {
     const { children } = props;
     return <Text as="del">{children}</Text>;
   },
-  thematicBreak: Divider,
-  link: Link,
+  hr: props => {
+    return <Divider />;
+  },
+  a: Link,
   img: Image,
   linkReference: Link,
   imageReference: Image,
@@ -55,7 +65,7 @@ export const defaults = {
     const { children } = props;
     return <Text as="span">{children}</Text>;
   },
-  list: props => {
+  ul: props => {
     const { start, ordered, children, depth } = props;
     const attrs = getCoreProps(props);
     if (start !== null && start !== 1 && start !== undefined) {
@@ -80,7 +90,32 @@ export const defaults = {
       </Element>
     );
   },
-  listItem: props => {
+  ol: props => {
+    const { start, ordered, children, depth } = props;
+    const attrs = getCoreProps(props);
+    if (start !== null && start !== 1 && start !== undefined) {
+      attrs.start = start.toString();
+    }
+    let Element = UnorderedList;
+    let styleType = 'disc';
+    if (ordered) {
+      Element = OrderedList;
+      styleType = 'decimal';
+    }
+    if (depth === 1) styleType = 'circle';
+    return (
+      <Element
+        spacing={2}
+        as={ordered ? 'ol' : 'ul'}
+        styleType={styleType}
+        pl={4}
+        {...attrs}
+      >
+        {children}
+      </Element>
+    );
+  },
+  li: props => {
     const { children, checked } = props;
     let checkbox = null;
     if (checked !== null && checked !== undefined) {
@@ -113,33 +148,45 @@ export const defaults = {
       </Heading>
     );
   },
-  inlineCode: props => {
+  pre: props => {
     const { children } = props;
     return <Code {...getCoreProps(props)}>{children}</Code>;
   },
+  table: Table,
+  thead: Thead,
+  tbody: Tbody,
+  tr: Tr,
+  td: Td,
+  th: Th,
 };
 
 function ChakraUIRenderer(theme = defaults) {
   return {
-    p: theme.paragraph,
-    em: theme.emphasis,
+    p: theme.p,
+    em: theme.em,
     blockquote: theme.blockquote,
     code: theme.code,
-    del: theme.delete,
-    hr: theme.thematicBreak,
-    a: theme.link,
+    del: theme.del,
+    hr: theme.hr,
+    a: theme.a,
     img: theme.img,
     text: theme.text,
-    ul: theme.list,
-    ol: theme.list,
-    li: theme.listItem,
+    ul: theme.ul,
+    ol: theme.ol,
+    li: theme.li,
     h1: theme.heading,
     h2: theme.heading,
     h3: theme.heading,
     h4: theme.heading,
     h5: theme.heading,
     h6: theme.heading,
-    pre: theme.inlineCode,
+    pre: theme.pre,
+    table: theme.table,
+    thead: theme.thead,
+    tbody: theme.tbody,
+    tr: theme.tr,
+    td: theme.td,
+    th: theme.th,
   };
 }
 
