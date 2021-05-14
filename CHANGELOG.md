@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0] - 2021-05-14
+
+### 🔥💥 Breaking Changes
+
+- Theme is revisited for `react-markdown v6` [big thanks to @davidgit](https://github.com/davidgit). Please be careful before update your dependencies. This update can break your all markdown settings.
+
+To migrate to new version, change `renderers` prop with `components` like [react markdown](https://github.com/remarkjs/react-markdown/blob/main/changelog.md#600---2021-04-15) says.
+```
+<ReactMarkdown
+  components={ChakraUIRenderer()}
+  children={markdown}
+  escapeHtml={false}
+/>;
+```
+
 ## [1.1.0] - 2021-02-05
 
 ### Major Changes
