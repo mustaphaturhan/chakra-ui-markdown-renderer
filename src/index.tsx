@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
   Text,
   Code,
@@ -17,14 +17,25 @@ import {
   Th,
   Td,
 } from '@chakra-ui/react';
+import deepmerge from 'deepmerge';
+import { Components } from 'react-markdown/src/ast-to-react';
 
-function getCoreProps(props) {
+type GetCoreProps = {
+  children?: React.ReactNode;
+  'data-sourcepos'?: any;
+};
+
+function getCoreProps(props: GetCoreProps): any {
   return props['data-sourcepos']
     ? { 'data-sourcepos': props['data-sourcepos'] }
     : {};
 }
 
-export const defaults = {
+interface Defaults extends Components {
+  heading?: Components['h1'];
+}
+
+export const defaults: Defaults = {
   p: props => {
     const { children } = props;
     return <Text mb={2}>{children}</Text>;
@@ -48,7 +59,16 @@ export const defaults = {
       return <Code p={2} children={children} />;
     }
 
-    return <Code className={className} whiteSpace="break-spaces" d="block" w="full" p={2} children={children} />;
+    return (
+      <Code
+        className={className}
+        whiteSpace="break-spaces"
+        d="block"
+        w="full"
+        p={2}
+        children={children}
+      />
+    );
   },
   del: props => {
     const { children } = props;
@@ -59,18 +79,13 @@ export const defaults = {
   },
   a: Link,
   img: Image,
-  linkReference: Link,
-  imageReference: Image,
   text: props => {
     const { children } = props;
     return <Text as="span">{children}</Text>;
   },
   ul: props => {
-    const { start, ordered, children, depth } = props;
+    const { ordered, children, depth } = props;
     const attrs = getCoreProps(props);
-    if (start !== null && start !== 1 && start !== undefined) {
-      attrs.start = start.toString();
-    }
     let Element = UnorderedList;
     let styleType = 'disc';
     if (ordered) {
@@ -91,11 +106,8 @@ export const defaults = {
     );
   },
   ol: props => {
-    const { start, ordered, children, depth } = props;
+    const { ordered, children, depth } = props;
     const attrs = getCoreProps(props);
-    if (start !== null && start !== 1 && start !== undefined) {
-      attrs.start = start.toString();
-    }
     let Element = UnorderedList;
     let styleType = 'disc';
     if (ordered) {
@@ -160,34 +172,40 @@ export const defaults = {
   th: Th,
 };
 
-function ChakraUIRenderer(theme = defaults) {
-  return {
-    p: theme.p,
-    em: theme.em,
-    blockquote: theme.blockquote,
-    code: theme.code,
-    del: theme.del,
-    hr: theme.hr,
-    a: theme.a,
-    img: theme.img,
-    text: theme.text,
-    ul: theme.ul,
-    ol: theme.ol,
-    li: theme.li,
-    h1: theme.heading,
-    h2: theme.heading,
-    h3: theme.heading,
-    h4: theme.heading,
-    h5: theme.heading,
-    h6: theme.heading,
-    pre: theme.pre,
-    table: theme.table,
-    thead: theme.thead,
-    tbody: theme.tbody,
-    tr: theme.tr,
-    td: theme.td,
-    th: theme.th,
+function ChakraUIRenderer(theme?: Defaults, merge = true): Components {
+  const elements = {
+    p: defaults.p,
+    em: defaults.em,
+    blockquote: defaults.blockquote,
+    code: defaults.code,
+    del: defaults.del,
+    hr: defaults.hr,
+    a: defaults.a,
+    img: defaults.img,
+    text: defaults.text,
+    ul: defaults.ul,
+    ol: defaults.ol,
+    li: defaults.li,
+    h1: defaults.heading,
+    h2: defaults.heading,
+    h3: defaults.heading,
+    h4: defaults.heading,
+    h5: defaults.heading,
+    h6: defaults.heading,
+    pre: defaults.pre,
+    table: defaults.table,
+    thead: defaults.thead,
+    tbody: defaults.tbody,
+    tr: defaults.tr,
+    td: defaults.td,
+    th: defaults.th,
   };
+
+  if (theme && merge) {
+    return deepmerge(elements, theme);
+  }
+
+  return elements;
 }
 
 export default ChakraUIRenderer;

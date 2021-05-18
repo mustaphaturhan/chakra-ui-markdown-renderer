@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0] - 2021-05-18
+
+### Added
+
+- Typescript support.
+
+### 🔥💥 Breaking Changes
+
+- There is no need to import `defaults` to extend/change default theme anymore. `chakra-ui-markdown-renderer` will merge default and your theme together automatically. If you have `...defaults` in your theme, you may delete it safely.
+
+```jsx
+import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
+
+const newTheme = {
+  p: props => {
+    const { children } = props;
+    return <Text mb={2} fontSize={'12px'}>{children}</Text>;
+  },
+}
+
+<ReactMarkdown
+  components={ChakraUIRenderer(newTheme)}
+  children={markdown}
+  escapeHtml={false}
+/>;
+```
+
 ## [2.0.0] - 2021-05-14
 
 ### 🔥💥 Breaking Changes

@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/npm/v/chakra-ui-markdown-renderer?color=green&style=flat-square" />
 </a>
 
-This package is created for people who using [Chakra-UI's](https://chakra-ui.com/) and [react-markdown](https://github.com/rexxars/react-markdown) together.
+This package is created for people who using [Chakra-UI's](https://chakra-ui.com/) and [react-markdown](https://github.com/remarkjs/react-markdown) together.
 
 ### The Problem
 
@@ -38,11 +38,12 @@ import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 
 ### Extending Defaults
 
+`chakra-ui-markdown-renderer` is merging standart theme with your theme by default.
+
 ```jsx
-import ChakraUIRenderer, { defaults } from 'chakra-ui-markdown-renderer';
+import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 
 const newTheme = {
-  ...defaults,
   p: props => {
     const { children } = props;
     return <Text mb={2} fontSize={'12px'}>{children}</Text>;
