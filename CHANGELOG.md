@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.1] - 2021-05-20
+
+### Fixed
+
+- Fixes `deepmerge` error that occures on `nextjs`.
+
 ## [3.0.0] - 2021-05-18
 
 ### Added
