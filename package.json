@@ -20,13 +20,6 @@
   },
   "peerDependencies": {
     "@chakra-ui/react": "^1.6.1",
-    "@emotion/core": "^10.0.27",
-    "@emotion/react": "^11.1.2",
-    "@emotion/styled": "^11.0.0",
-    "emotion-theming": "^10.0.27",
-    "framer-motion": "^2.9.5",
-    "react": ">= 16.8",
-    "react-dom": ">= 16.8",
     "react-markdown": "^6.0.2"
   },
   "devDependencies": {
