@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.0] - 2021-11-19
+
+### 🔥💥 Breaking Changes
+
+- `react-markdown` is updated to `^7`. I did everything I can do to not create a breaking change but unfortunately, `Components` type is coming from `react-markdown` while it was coming from `react-markdown/src/ast-to-react` in version 6.
+
+```jsx
+import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
+
+const newTheme = {
+  p: props => {
+    const { children } = props;
+    return (
+      <Text mb={2} fontSize={'12px'}>
+        {children}
+      </Text>
+    );
+  },
+};
+
+<ReactMarkdown components={ChakraUIRenderer(newTheme)} children={markdown} />;
+```
+
 ## [3.0.1] - 2021-05-20
 
 ### Fixed
@@ -24,9 +47,13 @@ import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 const newTheme = {
   p: props => {
     const { children } = props;
-    return <Text mb={2} fontSize={'12px'}>{children}</Text>;
+    return (
+      <Text mb={2} fontSize={'12px'}>
+        {children}
+      </Text>
+    );
   },
-}
+};
 
 <ReactMarkdown
   components={ChakraUIRenderer(newTheme)}
@@ -42,6 +69,7 @@ const newTheme = {
 - Theme is revisited for `react-markdown v6` [big thanks to @davidgit](https://github.com/davidgit). Please be careful before update your dependencies. This update can break your all markdown settings.
 
 To migrate to new version, change `renderers` prop with `components` like [react markdown](https://github.com/remarkjs/react-markdown/blob/main/changelog.md#600---2021-04-15) says.
+
 ```
 <ReactMarkdown
   components={ChakraUIRenderer()}

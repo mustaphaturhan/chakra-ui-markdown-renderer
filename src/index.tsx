@@ -1,24 +1,20 @@
 import * as React from 'react';
+import deepmerge from 'deepmerge';
+import { Components } from 'react-markdown';
 import {
-  Text,
   Code,
   Divider,
-  Link,
-  Checkbox,
-  ListItem,
   Heading,
-  Image,
+  Link,
+  ListItem,
   OrderedList,
+  Text,
   UnorderedList,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-} from '@chakra-ui/react';
-import deepmerge from 'deepmerge';
-import { Components } from 'react-markdown/src/ast-to-react';
+} from '@chakra-ui/layout';
+import { Image } from '@chakra-ui/image';
+import { Checkbox } from '@chakra-ui/checkbox';
+import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/table';
+import { chakra } from '@chakra-ui/system';
 
 type GetCoreProps = {
   children?: React.ReactNode;
@@ -162,14 +158,14 @@ export const defaults: Defaults = {
   },
   pre: props => {
     const { children } = props;
-    return <Code {...getCoreProps(props)}>{children}</Code>;
+    return <chakra.pre {...getCoreProps(props)}>{children}</chakra.pre>;
   },
   table: Table,
   thead: Thead,
   tbody: Tbody,
-  tr: Tr,
-  td: Td,
-  th: Th,
+  tr: props => <Tr>{props.children}</Tr>,
+  td: props => <Td>{props.children}</Td>,
+  th: props => <Th>{props.children}</Th>,
 };
 
 function ChakraUIRenderer(theme?: Defaults, merge = true): Components {
