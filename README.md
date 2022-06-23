@@ -10,18 +10,18 @@ This package is created for people who using [Chakra-UI's](https://chakra-ui.com
 
 CSSReset component is turning down every default style of elements that provided by browser. HTML elements like h1, h2, h3... aren't get default styles but Markdown need them for rendering purposes. This package is solving the problem by changing renderer defaults with chakra-ui's components.
 
-For example, when you want to render level 2 heading component, it is rendering: `<Heading as="h2" size="xl">Your Header Title</Heading>`.
-
 ### Install
 
-Make @chakra-ui/react installation how they tell you on their [Getting Started - Chakra UI](https://chakra-ui.com/docs/getting-started) page.
+- Install @chakra-ui/react by following their [Getting Started - Chakra UI](https://chakra-ui.com/getting-started) guide.
+- Install [react-markdown](https://github.com/remarkjs/react-markdown).
+- Install `chakra-ui-markdown-renderer`.
 
 ```sh
-$ yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion chakra-ui-markdown-renderer
+$ yarn add chakra-ui-markdown-renderer
 
 # or
 
-$ npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion chakra-ui-markdown-renderer
+$ npm i chakra-ui-markdown-renderer
 ```
 
 ### Usage
@@ -56,3 +56,7 @@ const newTheme = {
   skipHtml
 />;
 ```
+
+#### Alternative ways
+
+[@nikolovlazar/chakra-ui-prose](https://www.npmjs.com/package/@nikolovlazar/chakra-ui-prose) might also work depends on your needs.

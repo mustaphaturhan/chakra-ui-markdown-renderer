@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.1.0] - 2022-06-23
+
+- Allows `react-markdown v8` and `chakra-ui v2` (#27, thanks [@baartch](https://github.com/baartch))
+- Updates deprecated `d=...` property to `display=...` property.
+- Changes type definition of first parameter. `heading` is not accepted as a property anymore since it isn't used anywhere. Use `h1, h2, h3, h4, h5, h6` instead.
+
 ## [4.0.0] - 2021-11-19
 
 ### 🔥💥 Breaking Changes
