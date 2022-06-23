@@ -28,6 +28,9 @@ function getCoreProps(props: GetCoreProps): any {
 }
 
 interface Defaults extends Components {
+  /**
+   * @deprecated Use `h1, h2, h3, h4, h5, h6` instead.
+   */
   heading?: Components['h1'];
 }
 
@@ -59,7 +62,7 @@ export const defaults: Defaults = {
       <Code
         className={className}
         whiteSpace="break-spaces"
-        d="block"
+        display="block"
         w="full"
         p={2}
         children={children}

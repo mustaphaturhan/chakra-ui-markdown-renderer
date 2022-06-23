@@ -3,7 +3,7 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "source": "src/index.tsx",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "private": false,
   "types": "./dist/index.d.ts",
   "license": "MIT",
@@ -42,7 +42,7 @@
   "scripts": {
     "prepare": "install-peers",
     "build": "rollup -c",
-    "build-watch": "rollup -c -w"
+    "build:watch": "rollup -c -w"
   },
   "eslintConfig": {
     "extends": "react-app"
